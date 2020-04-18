@@ -23,7 +23,12 @@ namespace KP_Tools
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            IMvcBuilder builder = services.AddControllersWithViews();
+
+#if DEBUG
+            // Only add during DEBUG mode
+            builder.AddRazorRuntimeCompilation();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +37,7 @@ namespace KP_Tools
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
