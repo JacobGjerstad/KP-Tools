@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KP_Tools.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,10 @@ namespace KP_Tools
         public void ConfigureServices(IServiceCollection services)
         {
             IMvcBuilder builder = services.AddControllersWithViews();
+
+            string connection = Configuration.GetConnectionString("StatsDb");
+
+            services.AddDbContext<StatContext>(options => options.UseSqlServer(connection));
 
 #if DEBUG
             // Only add during DEBUG mode
