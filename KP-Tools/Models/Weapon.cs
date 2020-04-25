@@ -117,5 +117,6 @@ namespace KP_Tools.Models
         /// </summary>
         public int WeaponMagicDefense { get; set; }
 
+        public ICollection<StatWeapon> StatWeapons { get; set; }
     }
 }

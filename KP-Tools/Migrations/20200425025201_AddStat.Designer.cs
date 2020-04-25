@@ -3,14 +3,16 @@ using KP_Tools.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KP_Tools.Migrations
 {
     [DbContext(typeof(StatContext))]
-    partial class StatContextModelSnapshot : ModelSnapshot
+    [Migration("20200425025201_AddStat")]
+    partial class AddStat
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,21 +36,6 @@ namespace KP_Tools.Migrations
                     b.HasKey("StatId");
 
                     b.ToTable("Stats");
-                });
-
-            modelBuilder.Entity("KP_Tools.Models.StatWeapon", b =>
-                {
-                    b.Property<int>("StatId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WeaponId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StatId", "WeaponId");
-
-                    b.HasIndex("WeaponId");
-
-                    b.ToTable("StatWeapons");
                 });
 
             modelBuilder.Entity("KP_Tools.Models.Weapon", b =>
@@ -121,21 +108,6 @@ namespace KP_Tools.Migrations
                     b.HasKey("WeaponId");
 
                     b.ToTable("Weapons");
-                });
-
-            modelBuilder.Entity("KP_Tools.Models.StatWeapon", b =>
-                {
-                    b.HasOne("KP_Tools.Models.Stat", "Stat")
-                        .WithMany("StatWeapons")
-                        .HasForeignKey("StatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KP_Tools.Models.Weapon", "Weapon")
-                        .WithMany("StatWeapons")
-                        .HasForeignKey("WeaponId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
