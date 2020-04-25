@@ -3,14 +3,16 @@ using KP_Tools.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KP_Tools.Migrations
 {
     [DbContext(typeof(StatContext))]
-    partial class StatContextModelSnapshot : ModelSnapshot
+    [Migration("20200425042408_AddedRestrictions")]
+    partial class AddedRestrictions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +32,8 @@ namespace KP_Tools.Migrations
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double>("StatValue")
-                        .HasColumnType("float");
+                    b.Property<int>("StatValue")
+                        .HasColumnType("int");
 
                     b.HasKey("StatId");
 
@@ -60,69 +62,69 @@ namespace KP_Tools.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<double>("WeaponActionEndurance")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponActionEndurance")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponActionSpeed")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponActionSpeed")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponCastingSpeed")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponCastingSpeed")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponHp")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponHp")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponHpRecovery")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponHpRecovery")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponMagicAttack")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponMagicAttack")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponMagicDefense")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponMagicDefense")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponMagicalCritRate")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponMagicalCritRate")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponMana")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponMana")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponManaRecovery")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponManaRecovery")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponMovementSpeed")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponMovementSpeed")
+                        .HasColumnType("int");
 
                     b.Property<string>("WeaponName")
                         .IsRequired()
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<double>("WeaponPhysicalAttack")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponPhysicalAttack")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponPhysicalCritRate")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponPhysicalCritRate")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponPhysicalDefense")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponPhysicalDefense")
+                        .HasColumnType("int");
 
                     b.Property<string>("WeaponProperty")
                         .IsRequired()
                         .HasColumnType("nvarchar(15)")
                         .HasMaxLength(15);
 
-                    b.Property<double>("WeaponRageGeneration")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponRageGeneration")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponSpellEndurance")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponSpellEndurance")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponStamina")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponStamina")
+                        .HasColumnType("int");
 
-                    b.Property<double>("WeaponStaminaRecovery")
-                        .HasColumnType("float");
+                    b.Property<int>("WeaponStaminaRecovery")
+                        .HasColumnType("int");
 
                     b.Property<string>("WeaponType")
                         .IsRequired()

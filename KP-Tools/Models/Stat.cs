@@ -20,12 +20,16 @@ namespace KP_Tools.Models
         /// <summary>
         /// The type of stat (Max HP, Max stamina, etc)
         /// </summary>
+        [Required]
+        [MaxLength(100)]
         public string StatType { get; set; }
 
         /// <summary>
         /// The value that the stat gives
         /// </summary>
-        public int StatValue { get; set; }
+        [Required]
+        [Range(0.00, 1000.00)]
+        public double StatValue { get; set; }
 
         public ICollection<StatWeapon> StatWeapons { get; set; }
     }
