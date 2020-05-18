@@ -29,6 +29,14 @@ namespace KP_Tools.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ShowAll()
+        {
+            List<Weapon> weapons = await WeaponDb.GetAllWeapons(_context);
+
+            return View(weapons);
+        }
+
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
@@ -41,8 +49,8 @@ namespace KP_Tools.Controllers
             {
                 await WeaponDb.Add(w, _context);
 
-                // TempData["Message"] = $"{w.Title} added successfully";
-                return RedirectToAction("");
+                TempData["Message"] = "Weapon added successfully";
+                return RedirectToAction("ShowAll");
             }
 
             return View(w);
