@@ -28,5 +28,27 @@ namespace KP_Tools.Models
 
             return w;
         }
+
+        public async static Task<Weapon> Edit(Weapon w, StatContext context)
+        {
+            await context.AddAsync(w);
+            context.Entry(w).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return w;
+        }
+
+        /// <summary>
+        /// Returns a single weapon or null if no match
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="context"></param>
+        public async static Task<Weapon> GetWeaponById(int id, StatContext context)
+        {
+            Weapon w = await (from weapon in context.Weapons
+                              where weapon.WeaponId == id
+                              select weapon).SingleOrDefaultAsync();
+
+            return w;
+        }
     }
 }

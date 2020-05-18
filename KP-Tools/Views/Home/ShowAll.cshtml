@@ -1,40 +1,45 @@
 ﻿@model IEnumerable<KP_Tools.Models.Weapon>
 
 @{
-    ViewData["Title"] = "All Available Weapons";
+	ViewData["Title"] = "All Available Weapons";
 }
 
 <h1>All Weapons Currently Available</h1>
 
 @if (TempData["Message"] != null)
 {
-    <div class="alert alert-success" role="alert">@TempData["Message"]</div>
+	<div class="alert alert-success alert-dismissible fade show" role="alert">
+		@TempData["Message"]
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 }
 
 <p>
-    <a asp-action="Add">Create New Weapon!</a>
+	<a asp-action="Add">Create New Weapon!</a>
 </p>
 <table class="table table-striped table-bordered table-sm">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Type
-            </th>
-            <th>
-                Property
-            </th>
+	<thead>
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Type
+			</th>
+			<th>
+				Property
+			</th>
 			<th>
 				Hit Points
 			</th>
-            <th>
-                HP Recovery
-            </th>
-            <th>
-                Stamina
-            </th>
+			<th>
+				HP Recovery
+			</th>
+			<th>
+				Stamina
+			</th>
 			<th>
 				Stamina Recovery
 			</th>
@@ -80,80 +85,80 @@
 			<th>
 				Magic Defense
 			</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponProperty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponHp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponHpRecovery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponStamina)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponStaminaRecovery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponMana)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponManaRecovery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponRageGeneration)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponPhysicalAttack)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponMagicAttack)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponPhysicalCritRate)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponMagicalCritRate)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponActionSpeed)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponCastingSpeed)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponMovementSpeed)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponActionEndurance)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponSpellEndurance)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponPhysicalDefense)%
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WeaponMagicDefense)%
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponType)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponProperty)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponHp)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponHpRecovery)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponStamina)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponStaminaRecovery)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponMana)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponManaRecovery)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponRageGeneration)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponPhysicalAttack)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponMagicAttack)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponPhysicalCritRate)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponMagicalCritRate)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponActionSpeed)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponCastingSpeed)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponMovementSpeed)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponActionEndurance)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponSpellEndurance)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponPhysicalDefense)%
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.WeaponMagicDefense)%
+				</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.WeaponId" class="btn btn-primary">Edit</a>
+				</td>
+			</tr>
+		}
+	</tbody>
 </table>

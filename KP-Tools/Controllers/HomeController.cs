@@ -56,6 +56,31 @@ namespace KP_Tools.Controllers
             return View(w);
         }
 
+        public async Task<IActionResult> Edit(int id)
+        {
+            Weapon w = await WeaponDb.GetWeaponById(id, _context);
+
+            if(w == null)
+            {
+                return NotFound();
+            }
+
+            return View(w);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Weapon w)
+        {
+            if (ModelState.IsValid)
+            {
+                await WeaponDb.Edit(w, _context);
+                TempData["Message"] = w.WeaponName + " updated successfully";
+                return RedirectToAction("ShowAll");
+            }
+
+            return View(w);
+        }
+
         public IActionResult Privacy()
         {
             return View();
