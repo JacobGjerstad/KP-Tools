@@ -50,7 +50,7 @@ namespace KP_Tools.Controllers
                 await WeaponDb.Add(w, _context);
 
                 TempData["Message"] = "Weapon added successfully";
-                return RedirectToAction("ShowAll");
+                return RedirectToAction(nameof(ShowAll));
             }
 
             return View(w);
@@ -75,10 +75,32 @@ namespace KP_Tools.Controllers
             {
                 await WeaponDb.Edit(w, _context);
                 TempData["Message"] = w.WeaponName + " updated successfully";
-                return RedirectToAction("ShowAll");
+                return RedirectToAction(nameof(ShowAll));
             }
 
             return View(w);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            Weapon w = await WeaponDb.GetWeaponById(id, _context);
+
+            if(w == null)
+            {
+                return NotFound();
+            }
+
+            return View(w);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await WeaponDb.Delete(id, _context);
+            TempData["Message"] = "Weapon deleted successfully";
+            return RedirectToAction(nameof(ShowAll));
         }
 
         public IActionResult Privacy()

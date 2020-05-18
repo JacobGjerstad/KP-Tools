@@ -50,5 +50,17 @@ namespace KP_Tools.Models
 
             return w;
         }
+
+        public async static Task Delete(int id, StatContext context)
+        {
+            Weapon w = await GetWeaponById(id, context);
+
+            if(w != null)
+            {
+                await context.AddAsync(w);
+                context.Entry(w).State = EntityState.Deleted;
+                await context.SaveChangesAsync();
+            }
+        }
     }
 }
