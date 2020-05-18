@@ -1,8 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<KP_Tools.Models.Weapon>
+@{
+    ViewData["Title"] = "Custom Stats";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+	<h1 class="display-4">Welcome to KP Tools!</h1>
+	<p>You will be able to select your weapons and change various stats which will let you preview your overall weapon stats!</p>
+
+
+	<div class="card bg-light mb-3 mx-auto" style="max-width: 18rem;">
+		<div class="card-header">Pick your weapons!</div>
+		<div class="card-body">
+			<div class="input-group mb-3">
+				<select class="custom-select" id="inputGroupSelect1">
+					<option disabled selected>1st Weapon</option>
+					@foreach (var weapon in Model)
+					{
+						<option class="dropdown-item" href="#">@Html.DisplayFor(modelWeapon => weapon.WeaponName)</option>
+					}
+				</select>
+			</div>
+			<div class="input-group mb-3">
+				<select class="custom-select" id="inputGroupSelect2">
+					<option disabled selected>2nd Weapon</option>
+					@foreach (var weapon in Model)
+					{
+						<option class="dropdown-item" href="#">@Html.DisplayFor(modelWeapon => weapon.WeaponName)</option>
+					}
+				</select>
+			</div>
+			<button></button>
+		</div>
+	</div>
 </div>
+
+

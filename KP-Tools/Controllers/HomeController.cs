@@ -6,21 +6,31 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using KP_Tools.Models;
+using KP_Tools.Data;
 
 namespace KP_Tools.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
+        //private readonly ILogger<HomeController> _logger;
+        private readonly StatContext _context;
+        
+        public HomeController(StatContext context)
+        {
+            _context = context;
+        }
+        /*
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
+        }*/
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<Weapon> result = await WeaponDb.GetAllWeapons(_context);
+
+            return View(result);
         }
 
         public IActionResult Privacy()
