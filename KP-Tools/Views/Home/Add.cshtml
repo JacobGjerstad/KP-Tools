@@ -1,0 +1,133 @@
+﻿@model KP_Tools.Models.Weapon
+
+@{
+    ViewData["Title"] = "Add new Weapon";
+}
+
+<h1>Add</h1>
+
+<h4>Weapon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WeaponName" class="control-label">Weapon Name</label>
+                <input asp-for="WeaponName" class="form-control" />
+                <span asp-validation-for="WeaponName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponType" class="control-label">Type (Breaker/Slayer)</label>
+                <input asp-for="WeaponType" class="form-control" />
+                <span asp-validation-for="WeaponType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponProperty" class="control-label">Property (Physical/Magical)</label>
+                <input asp-for="WeaponProperty" class="form-control" />
+                <span asp-validation-for="WeaponProperty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponHp" class="control-label">Hit Points (Normally 18,000)</label>
+                <input asp-for="WeaponHp" class="form-control" />
+                <span asp-validation-for="WeaponHp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponHpRecovery" class="control-label">Hp Recovery</label>
+                <input asp-for="WeaponHpRecovery" class="form-control" />
+                <span asp-validation-for="WeaponHpRecovery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponStamina" class="control-label">Stamina</label>
+                <input asp-for="WeaponStamina" class="form-control" />
+                <span asp-validation-for="WeaponStamina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponStaminaRecovery" class="control-label">Stamina Recovery</label>
+                <input asp-for="WeaponStaminaRecovery" class="form-control" />
+                <span asp-validation-for="WeaponStaminaRecovery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponMana" class="control-label">Mana</label>
+                <input asp-for="WeaponMana" class="form-control" />
+                <span asp-validation-for="WeaponMana" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponManaRecovery" class="control-label">Mana Recovery</label>
+                <input asp-for="WeaponManaRecovery" class="form-control" />
+                <span asp-validation-for="WeaponManaRecovery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponRageGeneration" class="control-label">Rage Generation (Normally 12.50)</label>
+                <input asp-for="WeaponRageGeneration" class="form-control" />
+                <span asp-validation-for="WeaponRageGeneration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponPhysicalAttack" class="control-label">Physical Attack</label>
+                <input asp-for="WeaponPhysicalAttack" class="form-control" />
+                <span asp-validation-for="WeaponPhysicalAttack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponMagicAttack" class="control-label">Magic Attack</label>
+                <input asp-for="WeaponMagicAttack" class="form-control" />
+                <span asp-validation-for="WeaponMagicAttack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponPhysicalCritRate" class="control-label">Physical Critical Rate</label>
+                <input asp-for="WeaponPhysicalCritRate" class="form-control" />
+                <span asp-validation-for="WeaponPhysicalCritRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponMagicalCritRate" class="control-label">Magical Critical Rate</label>
+                <input asp-for="WeaponMagicalCritRate" class="form-control" />
+                <span asp-validation-for="WeaponMagicalCritRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponActionSpeed" class="control-label">Action Speed</label>
+                <input asp-for="WeaponActionSpeed" class="form-control" />
+                <span asp-validation-for="WeaponActionSpeed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponCastingSpeed" class="control-label">Casting Speed</label>
+                <input asp-for="WeaponCastingSpeed" class="form-control" />
+                <span asp-validation-for="WeaponCastingSpeed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponMovementSpeed" class="control-label">Movement Speed</label>
+                <input asp-for="WeaponMovementSpeed" class="form-control" />
+                <span asp-validation-for="WeaponMovementSpeed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponActionEndurance" class="control-label">Action Endurance</label>
+                <input asp-for="WeaponActionEndurance" class="form-control" />
+                <span asp-validation-for="WeaponActionEndurance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponSpellEndurance" class="control-label">Spell Endurance</label>
+                <input asp-for="WeaponSpellEndurance" class="form-control" />
+                <span asp-validation-for="WeaponSpellEndurance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponPhysicalDefense" class="control-label">Physical Defense</label>
+                <input asp-for="WeaponPhysicalDefense" class="form-control" />
+                <span asp-validation-for="WeaponPhysicalDefense" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+				<label asp-for="WeaponMagicDefense" class="control-label">Magic Defense</label>
+                <input asp-for="WeaponMagicDefense" class="form-control" />
+                <span asp-validation-for="WeaponMagicDefense" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Weapon" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -12,18 +12,13 @@ namespace KP_Tools.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
+
         private readonly StatContext _context;
         
         public HomeController(StatContext context)
         {
             _context = context;
         }
-        /*
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }*/
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -31,6 +26,26 @@ namespace KP_Tools.Controllers
             List<Weapon> result = await WeaponDb.GetAllWeapons(_context);
 
             return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(Weapon w)
+        {
+            if (ModelState.IsValid)
+            {
+                await WeaponDb.Add(w, _context);
+
+                // TempData["Message"] = $"{w.Title} added successfully";
+                return RedirectToAction("");
+            }
+
+            return View(w);
         }
 
         public IActionResult Privacy()

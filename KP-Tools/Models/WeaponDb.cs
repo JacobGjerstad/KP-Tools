@@ -11,7 +11,7 @@ namespace KP_Tools.Models
     /// Contains DB helper methods for
     /// <see cref="Models.Weapon"/>
     /// </summary>
-    public class WeaponDb
+    public static class WeaponDb
     {
         public async static Task<List<Weapon>> GetAllWeapons(StatContext context)
         {
@@ -19,6 +19,14 @@ namespace KP_Tools.Models
                                           .OrderBy(w => w.WeaponId)
                                           .ToListAsync();
             return weapons;
+        }
+
+        public async static Task<Weapon> Add(Weapon w, StatContext context)
+        {
+            await context.AddAsync(w);
+            await context.SaveChangesAsync();
+
+            return w;
         }
     }
 }
