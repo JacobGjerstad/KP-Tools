@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KP_Tools.Models.Weapon>
+﻿@model WeaponStatViewModel
 @{
     ViewData["Title"] = "Custom Stats";
 }
@@ -13,7 +13,7 @@
 				<div class="input-group mb-3">
 					<select class="custom-select" id="inputGroupSelect1">
 						<option disabled selected>1st Weapon</option>
-						@foreach (var weapon in Model)
+						@foreach (Weapon weapon in Model.AllWeapons)
 						{
 							<option class="dropdown-item" href="#">@Html.DisplayFor(modelWeapon => weapon.WeaponName)</option>
 						}
@@ -22,7 +22,7 @@
 				<div class="input-group mb-3">
 					<select class="custom-select" id="inputGroupSelect2">
 						<option disabled selected>2nd Weapon</option>
-						@foreach (var weapon in Model)
+						@foreach (Weapon weapon in Model.AllWeapons)
 						{
 							<option class="dropdown-item" href="#">@Html.DisplayFor(modelWeapon => weapon.WeaponName)</option>
 						}

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using KP_Tools.Models;
 using KP_Tools.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace KP_Tools.Controllers
 {
@@ -23,9 +24,16 @@ namespace KP_Tools.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            List<Weapon> result = await WeaponDb.GetAllWeapons(_context);
+            WeaponStatViewModel model = new WeaponStatViewModel();
 
-            return View(result);
+
+            List<Stat> statResult = (from s in _context.Stats select s).ToList();
+            // Get stats from DB
+            model.WeaponStats = statResult; // all weapon stats
+            model.AllWeapons = await WeaponDb.GetAllWeapons(_context);
+
+
+            return View(model);
         }
 
         [HttpGet]
