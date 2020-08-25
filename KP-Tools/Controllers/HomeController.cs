@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using KP_Tools.Models;
 using KP_Tools.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace KP_Tools.Controllers
 {
@@ -32,6 +33,50 @@ namespace KP_Tools.Controllers
             model.WeaponStats = statResult; // all weapon stats
             model.AllWeapons = await WeaponDb.GetAllWeapons(_context);
 
+
+            return View(model);
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Index(WeaponStatViewModel userSelectedItems)
+        //{
+
+
+        //    List<Stat> statResult = (from s in _context.Stats select s).ToList();
+        //    // Get stats from DB
+        //    userSelectedItems.WeaponStats = statResult; // all weapon stats
+        //    userSelectedItems.AllWeapons = await WeaponDb.GetAllWeapons(_context);
+
+
+        //    return View(userSelectedItems);
+        //}
+
+        [HttpPost]
+        //[ActionName("ApplyWeapon")]
+        public async Task<IActionResult> Index(WeaponStatViewModel model, IFormCollection form)
+        {
+            List<Stat> statResult = (from s in _context.Stats select s).ToList();
+            // Get stats from DB
+            model.WeaponStats = statResult; // all weapon stats
+            model.AllWeapons = await WeaponDb.GetAllWeapons(_context);
+
+            string firstWeap = Request.Form["firstWeapon"];
+            string secondWeap = Request.Form["secondWeapon"];
+
+            if (firstWeap != null && firstWeap != "" && secondWeap != null && secondWeap != "")
+            {
+                int firstWeapSelected = int.Parse(firstWeap);
+                model.ChosenWeapon1 = await WeaponDb.GetWeaponById(firstWeapSelected, _context);
+
+                int secondWeapSelected = int.Parse(secondWeap);
+                model.ChosenWeapon2 = await WeaponDb.GetWeaponById(secondWeapSelected, _context);
+
+                ViewData["userMsg"] = model.ChosenWeapon1.WeaponName + " and " + model.ChosenWeapon2.WeaponName;
+            }
+            else
+            {
+                ViewData["userMsg"] = "Please select both weapons before applying";
+            }
 
             return View(model);
         }

@@ -51,6 +51,15 @@ namespace KP_Tools.Models
             return w;
         }
 
+        public async static Task<Weapon> GetWeaponByName(string name, StatContext context)
+        {
+            Weapon w = await (from weapon in context.Weapons
+                              where weapon.WeaponName == name
+                              select weapon).SingleOrDefaultAsync();
+
+            return w;
+        }
+
         public async static Task Delete(int id, StatContext context)
         {
             Weapon w = await GetWeaponById(id, context);
