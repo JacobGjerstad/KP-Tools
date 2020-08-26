@@ -7,6 +7,64 @@
 	<h1 class="display-4">Welcome to KP Tools!</h1>
 	<p>You will be able to select your weapons and change various stats which will let you preview your overall weapon stats!</p>
 
+	@if (Model.ChosenWeapon1 != null && Model.ChosenWeapon2 != null)
+	{
+		<div class="card bg-light mb-3 float-left" style="max-width: 18rem;  margin-left: -20rem;">
+			<div class="card-header">@Model.ChosenWeapon1.WeaponName has been selected</div>
+			<div class="card-body">
+				<ul style="padding-left: 0px; text-align: left">
+					<li class="list-group-item">Type: @Model.ChosenWeapon1.WeaponType</li>
+					<li class="list-group-item">Property: @Model.ChosenWeapon1.WeaponProperty</li>
+					<li class="list-group-item">Hit Points: @Model.ChosenWeapon1.WeaponHp</li>
+					<li class="list-group-item">HP Recovery: @Model.ChosenWeapon1.WeaponHpRecovery</li>
+					<li class="list-group-item">Stamina: @Model.ChosenWeapon1.WeaponStamina</li>
+					<li class="list-group-item">Stamina Recovery: @Model.ChosenWeapon1.WeaponStaminaRecovery</li>
+					<li class="list-group-item">Mana: @Model.ChosenWeapon1.WeaponMana</li>
+					<li class="list-group-item">Mana Recovery: @Model.ChosenWeapon1.WeaponManaRecovery</li>
+					<li class="list-group-item">Rage Generation: @Model.ChosenWeapon1.WeaponRageGeneration</li>
+					<li class="list-group-item">Physical Attack: @Model.ChosenWeapon1.WeaponPhysicalAttack</li>
+					<li class="list-group-item">Magic Attack: @Model.ChosenWeapon1.WeaponMagicAttack</li>
+					<li class="list-group-item">Physical Crit Rate: @Model.ChosenWeapon1.WeaponPhysicalCritRate</li>
+					<li class="list-group-item">Magical Crit Rate: @Model.ChosenWeapon1.WeaponMagicalCritRate</li>
+					<li class="list-group-item">Action Speed: @Model.ChosenWeapon1.WeaponActionSpeed</li>
+					<li class="list-group-item">Casting Speed: @Model.ChosenWeapon1.WeaponCastingSpeed</li>
+					<li class="list-group-item">Movement Speed: @Model.ChosenWeapon1.WeaponMovementSpeed</li>
+					<li class="list-group-item">Action Endurance: @Model.ChosenWeapon1.WeaponActionEndurance</li>
+					<li class="list-group-item">Spell Endurance: @Model.ChosenWeapon1.WeaponSpellEndurance</li>
+					<li class="list-group-item">Physical Defense: @Model.ChosenWeapon1.WeaponPhysicalDefense</li>
+					<li class="list-group-item">Magic Defense: @Model.ChosenWeapon1.WeaponMagicDefense</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="card bg-light mb-3 float-right" style="max-width: 18rem;  margin-right: -20rem;">
+			<div class="card-header">@Model.ChosenWeapon2.WeaponName has been selected</div>
+			<div class="card-body">
+				<ul style="padding-left: 0px; text-align: left">
+					<li class="list-group-item">Type: @Model.ChosenWeapon2.WeaponType</li>
+					<li class="list-group-item">Property: @Model.ChosenWeapon2.WeaponProperty</li>
+					<li class="list-group-item">Hit Points: @Model.ChosenWeapon2.WeaponHp</li>
+					<li class="list-group-item">HP Recovery: @Model.ChosenWeapon2.WeaponHpRecovery</li>
+					<li class="list-group-item">Stamina: @Model.ChosenWeapon2.WeaponStamina</li>
+					<li class="list-group-item">Stamina Recovery: @Model.ChosenWeapon2.WeaponStaminaRecovery</li>
+					<li class="list-group-item">Mana: @Model.ChosenWeapon2.WeaponMana</li>
+					<li class="list-group-item">Mana Recovery: @Model.ChosenWeapon2.WeaponManaRecovery</li>
+					<li class="list-group-item">Rage Generation: @Model.ChosenWeapon2.WeaponRageGeneration</li>
+					<li class="list-group-item">Physical Attack: @Model.ChosenWeapon2.WeaponPhysicalAttack</li>
+					<li class="list-group-item">Magic Attack: @Model.ChosenWeapon2.WeaponMagicAttack</li>
+					<li class="list-group-item">Physical Crit Rate: @Model.ChosenWeapon2.WeaponPhysicalCritRate</li>
+					<li class="list-group-item">Magical Crit Rate: @Model.ChosenWeapon2.WeaponMagicalCritRate</li>
+					<li class="list-group-item">Action Speed: @Model.ChosenWeapon2.WeaponActionSpeed</li>
+					<li class="list-group-item">Casting Speed: @Model.ChosenWeapon2.WeaponCastingSpeed</li>
+					<li class="list-group-item">Movement Speed: @Model.ChosenWeapon2.WeaponMovementSpeed</li>
+					<li class="list-group-item">Action Endurance: @Model.ChosenWeapon2.WeaponActionEndurance</li>
+					<li class="list-group-item">Spell Endurance: @Model.ChosenWeapon2.WeaponSpellEndurance</li>
+					<li class="list-group-item">Physical Defense: @Model.ChosenWeapon2.WeaponPhysicalDefense</li>
+					<li class="list-group-item">Magic Defense: @Model.ChosenWeapon2.WeaponMagicDefense</li>
+				</ul>
+			</div>
+		</div>
+	}
 
 	@using (Html.BeginForm("Index", "Home", FormMethod.Post))
 	{
@@ -21,344 +79,345 @@
 					@Html.DropDownList("secondWeapon", Model.AllWeaponListItems(), "2nd Weapon")
 				</div>
 				<input type="submit" value="Apply" class="btn btn-primary" /><br />
-				<span>@ViewData["userMsg"]</span>
+				<br /><span>@ViewData["userMsg"]</span>
 			</div>
 		</div>
 	}
 
-		<div class="row">
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Weapon Skin</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Top Piece</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Bottom Piece</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Undergarments</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="row">
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Right Hand</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
+	<div class="row">
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Weapon Skin</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
 				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Left Hand</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Shoes</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
 				</div>
 			</div>
 		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Top Piece</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Bottom Piece</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Undergarments</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<div class="row">
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Hair - Top</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
+	<div class="row">
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Right Hand</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
 				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Hair - Bottom</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Face - Top</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Face - Bottom</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
 				</div>
 			</div>
 		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Left Hand</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Shoes</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
 
-		<div class="row">
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Neck</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
+	<div class="row">
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Hair - Top</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
 				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Back</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
-				<div class="card-header">Belt</div>
-				<div class="card-body">
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect1">
-							<option disabled selected>1st Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
-					<div class="input-group mb-3">
-						<select class="custom-select" id="inputGroupSelect2">
-							<option disabled selected>2nd Stat</option>
-							@foreach (Stat stat in Model.WeaponStats)
-							{
-								<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
-							}
-						</select>
-					</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
 				</div>
 			</div>
 		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Hair - Bottom</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Face - Top</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Face - Bottom</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Neck</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Back</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-light mb-3 mx-auto card-columns" style="max-width: 18rem;">
+			<div class="card-header">Belt</div>
+			<div class="card-body">
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect1">
+						<option disabled selected>1st Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+				<div class="input-group mb-3">
+					<select class="custom-select" id="inputGroupSelect2">
+						<option disabled selected>2nd Stat</option>
+						@foreach (Stat stat in Model.WeaponStats)
+						{
+							<option class="dropdown-item" href="#">@Html.DisplayFor(modelStat => stat.StatType)</option>
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 

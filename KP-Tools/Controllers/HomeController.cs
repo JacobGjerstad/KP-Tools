@@ -63,7 +63,7 @@ namespace KP_Tools.Controllers
             string firstWeap = Request.Form["firstWeapon"];
             string secondWeap = Request.Form["secondWeapon"];
 
-            if (firstWeap != null && firstWeap != "" && secondWeap != null && secondWeap != "")
+            if (firstWeap != null && firstWeap != "" && secondWeap != null && secondWeap != "" && firstWeap != secondWeap)
             {
                 int firstWeapSelected = int.Parse(firstWeap);
                 model.ChosenWeapon1 = await WeaponDb.GetWeaponById(firstWeapSelected, _context);
@@ -71,11 +71,11 @@ namespace KP_Tools.Controllers
                 int secondWeapSelected = int.Parse(secondWeap);
                 model.ChosenWeapon2 = await WeaponDb.GetWeaponById(secondWeapSelected, _context);
 
-                ViewData["userMsg"] = model.ChosenWeapon1.WeaponName + " and " + model.ChosenWeapon2.WeaponName;
+                // ViewData["userMsg"] = model.ChosenWeapon1.WeaponName + " and " + model.ChosenWeapon2.WeaponName;
             }
             else
             {
-                ViewData["userMsg"] = "Please select both weapons before applying";
+                ViewData["userMsg"] = "Please select two different weapons before applying";
             }
 
             return View(model);
