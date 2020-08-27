@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KP_Tools.Models
 {
@@ -19,10 +20,19 @@ namespace KP_Tools.Models
 
         public IEnumerable<SelectListItem> AllWeaponListItems()
         {
-            return AllWeapons.Select(c => new SelectListItem()
+            return AllWeapons.Select(w => new SelectListItem()
             {
-                Text = c.WeaponName,
-                Value = c.WeaponId.ToString()
+                Text = w.WeaponName,
+                Value = w.WeaponId.ToString()
+            });
+        }
+
+        public IEnumerable<SelectListItem> AllStatListItems()
+        {
+            return WeaponStats.Select(s => new SelectListItem()
+            {
+                Text = s.StatType,
+                Value = s.StatId.ToString()
             });
         }
     }

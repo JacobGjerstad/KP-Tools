@@ -32,27 +32,12 @@ namespace KP_Tools.Controllers
             // Get stats from DB
             model.WeaponStats = statResult; // all weapon stats
             model.AllWeapons = await WeaponDb.GetAllWeapons(_context);
-
+            ViewData["userMsg"] = "Apply button applies both weapons and all selected stats.";
 
             return View(model);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Index(WeaponStatViewModel userSelectedItems)
-        //{
-
-
-        //    List<Stat> statResult = (from s in _context.Stats select s).ToList();
-        //    // Get stats from DB
-        //    userSelectedItems.WeaponStats = statResult; // all weapon stats
-        //    userSelectedItems.AllWeapons = await WeaponDb.GetAllWeapons(_context);
-
-
-        //    return View(userSelectedItems);
-        //}
-
         [HttpPost]
-        //[ActionName("ApplyWeapon")]
         public async Task<IActionResult> Index(WeaponStatViewModel model, IFormCollection form)
         {
             List<Stat> statResult = (from s in _context.Stats select s).ToList();
@@ -62,6 +47,7 @@ namespace KP_Tools.Controllers
 
             string firstWeap = Request.Form["firstWeapon"];
             string secondWeap = Request.Form["secondWeapon"];
+            model.SelectedStats = await getSelectedStats(form);
 
             if (firstWeap != null && firstWeap != "" && secondWeap != null && secondWeap != "" && firstWeap != secondWeap)
             {
@@ -71,6 +57,12 @@ namespace KP_Tools.Controllers
                 int secondWeapSelected = int.Parse(secondWeap);
                 model.ChosenWeapon2 = await WeaponDb.GetWeaponById(secondWeapSelected, _context);
 
+                if (model.SelectedStats.Count() != 0)
+                {
+                    model.ChosenWeapon1 = addSelectedStats(model.SelectedStats, model.ChosenWeapon1);
+                    model.ChosenWeapon2 = addSelectedStats(model.SelectedStats, model.ChosenWeapon2);
+                }
+
                 // ViewData["userMsg"] = model.ChosenWeapon1.WeaponName + " and " + model.ChosenWeapon2.WeaponName;
             }
             else
@@ -79,6 +71,150 @@ namespace KP_Tools.Controllers
             }
 
             return View(model);
+        }
+
+        private Weapon addSelectedStats(List<Stat> selectedStats, Weapon chosenWeapon)
+        {
+            Weapon userWeap = chosenWeapon;
+
+            foreach (Stat stat in selectedStats)
+            {
+                int currStat = stat.StatId;
+                switch (currStat)
+                {
+                    case 1:
+                        userWeap.WeaponPhysicalCritRate += stat.StatValue;
+                        break;
+                    case 2:
+                        userWeap.WeaponRageGeneration += stat.StatValue;
+                        break;
+                    case 3:
+                        userWeap.WeaponManaRecovery += stat.StatValue;
+                        break;
+                    case 4:
+                        userWeap.WeaponMana += stat.StatValue;
+                        break;
+                    case 5:
+                        userWeap.WeaponStaminaRecovery += stat.StatValue;
+                        break;
+                    case 6:
+                        userWeap.WeaponStamina += stat.StatValue;
+                        break;
+                    case 7:
+                        userWeap.WeaponHpRecovery += stat.StatValue;
+                        break;
+                    case 8:
+                        userWeap.WeaponHp += stat.StatValue;
+                        break;
+                    case 9:
+                        userWeap.WeaponMagicalCritRate += stat.StatValue;
+                        break;
+                    case 10:
+                        userWeap.WeaponActionSpeed += stat.StatValue;
+                        break;
+                    case 11:
+                        userWeap.WeaponCastingSpeed += stat.StatValue;
+                        break;
+                    case 12:
+                        userWeap.WeaponMovementSpeed += stat.StatValue;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return userWeap;
+        }
+
+        private async Task<List<Stat>> getSelectedStats(IFormCollection form)
+        {
+            string firstWeapSkinStat = Request.Form["weaponSkinStatOne"];
+            string secondWeapSkinStat = Request.Form["weaponSkinStatTwo"];
+            string firstTopPieceStat = Request.Form["topPieceStatOne"];
+            string secondTopPieceStat = Request.Form["topPieceStatTwo"];
+            string firstBottomPieceStat = Request.Form["bottomPieceStatOne"];
+            string secondBottomPieceStat = Request.Form["bottomPieceStatTwo"];
+            string firstUndergarmentStat = Request.Form["undergarmentsStatOne"];
+            string secondUndergarmentStat = Request.Form["undergarmentsStatTwo"];
+            string firstRightHandStat = Request.Form["rightHandStatOne"];
+            string secondRightHandStat = Request.Form["rightHandStatTwo"];
+            string firstLeftHandStat = Request.Form["leftHandStatOne"];
+            string secondLeftHandStat = Request.Form["leftHandStatTwo"];
+            string firstShoesStat = Request.Form["shoesStatOne"];
+            string secondShoesStat = Request.Form["shoesStatTwo"];
+            string firstHairTopStat = Request.Form["hairTopStatOne"];
+            string secondHairTopStat = Request.Form["hairTopStatTwo"];
+            string firstHairBottomStat = Request.Form["hairBottomStatOne"];
+            string secondHairBottomStat = Request.Form["hairBottomStatTwo"];
+            string firstFaceTopStat = Request.Form["faceTopStatOne"];
+            string secondFaceTopStat = Request.Form["faceTopStatTwo"];
+            string firstFaceBottomStat = Request.Form["faceBottomStatOne"];
+            string secondFaceBottomStat = Request.Form["faceBottomStatTwo"];
+            string firstNeckStat = Request.Form["neckStatOne"];
+            string secondNeckStat = Request.Form["neckStatTwo"];
+            string firstBackStat = Request.Form["backStatOne"];
+            string secondBackStat = Request.Form["backStatTwo"];
+            string firstBeltStat = Request.Form["beltStatOne"];
+            string secondBeltStat = Request.Form["beltStatTwo"];
+
+            var userStats = new List<string>() 
+            {
+                firstWeapSkinStat,
+                secondWeapSkinStat,
+                firstTopPieceStat,
+                secondTopPieceStat,
+                firstBottomPieceStat,
+                secondBottomPieceStat,
+                firstUndergarmentStat,
+                secondUndergarmentStat,
+                firstRightHandStat,
+                secondRightHandStat,
+                firstLeftHandStat,
+                secondLeftHandStat,
+                firstShoesStat,
+                secondShoesStat,
+                firstHairTopStat,
+                secondHairTopStat,
+                firstHairBottomStat,
+                secondHairBottomStat,
+                firstFaceTopStat,
+                secondFaceTopStat,
+                firstFaceBottomStat,
+                secondFaceBottomStat,
+                firstNeckStat,
+                secondNeckStat,
+                firstBackStat,
+                secondBackStat,
+                firstBeltStat,
+                secondBeltStat
+            };
+            var userStatValues = new List<int>();
+            var selectedStats = new List<Stat>();
+
+            foreach (string stat in userStats)
+            {
+                int statVal = isStatSelected(stat);
+                userStatValues.Add(statVal);
+            }
+
+            foreach (int stat in userStatValues)
+            {
+                if(stat != 0)
+                {
+                    Stat userStat = await StatDb.GetStatById(stat, _context);
+                    selectedStats.Add(userStat);
+                }
+            }
+
+            return selectedStats;
+        }
+        public int isStatSelected(string userSelectedStat)
+        {
+            if (userSelectedStat != null && userSelectedStat != "")
+            {
+                int statSelected = int.Parse(userSelectedStat);
+                return statSelected;
+            }
+            return 0;
         }
 
         [HttpGet]
