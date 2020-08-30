@@ -45,18 +45,25 @@ namespace KP_Tools.Controllers
             model.WeaponStats = statResult; // all weapon stats
             model.AllWeapons = await WeaponDb.GetAllWeapons(_context);
 
+            // Gets both weapons from Index View
             string firstWeap = Request.Form["firstWeapon"];
             string secondWeap = Request.Form["secondWeapon"];
+            
+            // Gets all selected stats from Index View
             model.SelectedStats = await getSelectedStats(form);
 
+            // Checks if weapons are selected
             if (firstWeap != null && firstWeap != "" && secondWeap != null && secondWeap != "" && firstWeap != secondWeap)
             {
+
+                // Adds selected weapons to ViewModel
                 int firstWeapSelected = int.Parse(firstWeap);
                 model.ChosenWeapon1 = await WeaponDb.GetWeaponById(firstWeapSelected, _context);
 
                 int secondWeapSelected = int.Parse(secondWeap);
                 model.ChosenWeapon2 = await WeaponDb.GetWeaponById(secondWeapSelected, _context);
 
+                // If stats are selected add them to weapon stats
                 if (model.SelectedStats.Count() != 0)
                 {
                     model.ChosenWeapon1 = addSelectedStats(model.SelectedStats, model.ChosenWeapon1);
@@ -73,6 +80,12 @@ namespace KP_Tools.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Adds selected stats to the chosen weapons overall stat values
+        /// and returns the weapon model.
+        /// </summary>
+        /// <param name="selectedStats">List of selected stats</param>
+        /// <param name="chosenWeapon">Weapon selected by user</param>
         private Weapon addSelectedStats(List<Stat> selectedStats, Weapon chosenWeapon)
         {
             Weapon userWeap = chosenWeapon;
@@ -80,6 +93,7 @@ namespace KP_Tools.Controllers
             foreach (Stat stat in selectedStats)
             {
                 int currStat = stat.StatId;
+                // Adds stat based on statId
                 switch (currStat)
                 {
                     case 1:
@@ -125,6 +139,10 @@ namespace KP_Tools.Controllers
             return userWeap;
         }
 
+        /// <summary>
+        /// Checks if stat is selected
+        /// </summary>
+        /// <param name="form"></param>
         private async Task<List<Stat>> getSelectedStats(IFormCollection form)
         {
             string firstWeapSkinStat = Request.Form["weaponSkinStatOne"];
@@ -231,6 +249,10 @@ namespace KP_Tools.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Adds weapon to database
+        /// </summary>
+        /// <param name="w"></param>
         [HttpPost]
         public async Task<IActionResult> Add(Weapon w)
         {
@@ -257,6 +279,10 @@ namespace KP_Tools.Controllers
             return View(w);
         }
 
+        /// <summary>
+        /// Edits selected weapons value in database
+        /// </summary>
+        /// <param name="w"></param>
         [HttpPost]
         public async Task<IActionResult> Edit(Weapon w)
         {
@@ -283,6 +309,10 @@ namespace KP_Tools.Controllers
             return View(w);
         }
 
+        /// <summary>
+        /// Deletes weapon from database
+        /// </summary>
+        /// <param name="id"></param>
         [HttpPost]
         [ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)

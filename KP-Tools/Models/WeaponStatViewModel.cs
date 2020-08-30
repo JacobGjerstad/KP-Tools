@@ -18,6 +18,9 @@ namespace KP_Tools.Models
 
         public List<Weapon> AllWeapons { get; set; }
 
+        /// <summary>
+        /// Creates select list to pupulate weapon dropdown
+        /// </summary>
         public IEnumerable<SelectListItem> AllWeaponListItems()
         {
             return AllWeapons.Select(w => new SelectListItem()
@@ -27,6 +30,9 @@ namespace KP_Tools.Models
             });
         }
 
+        /// <summary>
+        /// Creates select list to populate stat dropdown
+        /// </summary>
         public IEnumerable<SelectListItem> AllStatListItems()
         {
             return WeaponStats.Select(s => new SelectListItem()
